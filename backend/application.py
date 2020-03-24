@@ -27,7 +27,6 @@ def hello_world():
     return redirect("/index.html", code=302)
 
 
-# dont use this for now
 @app.route("/login", methods=['POST'])
 def verify_login():
     data = request.get_json()
@@ -48,23 +47,20 @@ def verify_login():
 
 @app.before_request
 def if_login():
-    print("filter processing...")
-    print(session.get("email"))
-    # print(request.endpoint)
-    print(request.path)
+    print("filter processing at {} for {}".format(request.path, session.get("email")))
+
     if request.endpoint == "static":
         if session.get("email") is None:
-            print([x in request.path for x in APP_PAGE])
             if any([x in request.path for x in APP_PAGE]):
-                print("not app page!")
+                print("Accessing main app without logging in")
                 # return jsonify({"warning": "please login before you fetch data from servr"})
-                return redirect("/index.html", code=302)
+                return redirect("/login.html", code=302)
     if request.endpoint == "verify_login":
         pass
     else:
         if (session.get("email") is None and request.endpoint != "static"):
             # return redirect("/index.html", code=302)
-            return redirect("/index.html", code=302)
+            return redirect("/login.html", code=302)
 
 
 @app.route("/sign-out", methods=["POST"])
@@ -118,7 +114,8 @@ def update_a_user_settings():
     if data is None:
         return jsonify({"update_a_user_settings_success": False}), 400
     try:
-        user_settings = service.update_user_settings(data)
+        user_settings = service.save_other_setting(data)
+        print("sdasda")
         if user_settings is None:
             return jsonify({"update_a_user_settings_success": False}), 400
         else:
@@ -147,10 +144,12 @@ def perform_preference_match():
     try:
         allPrefs = r_service.get_all_user_preferences()
         approach = data["request_type"][0]
+
         bonus_list = sort_pref(allPrefs, approach, data["location"])
         # print(bonus_list)
         # TODO: return the corresponding json on Friday
         returned_list = [y for x, y in bonus_list]
+        print("bonus")
         print(returned_list)
         new_dict = {"email": data["email"], "request_type": approach,
                     "location": data["location"]}
@@ -172,6 +171,7 @@ def perform_preference_match():
         service.update_user_settings(new_dict)
         return jsonify(returned_list[:10]), 200
     except (KeyError, ValueError) as e:
+        print("the following key has issue")
         print(e)
         if "location" not in data:
             return jsonify({"warn": "You need a location for matching!"})
@@ -181,7 +181,7 @@ def perform_preference_match():
 @app.route("/users/settings/<email>", methods=["GET"])
 def get_user_setting(email):
     print("Getting setting emails...")
-    data = service.get_user_setting_by_email(email)
+    data = service.get_other_setting(email)
     if data is None:
         return jsonify({})
     return data.to_json()

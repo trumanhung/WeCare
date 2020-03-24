@@ -15,6 +15,7 @@ $(document).ready(async function () {
 
 
     let user_setting = await get_user_setting(localStorage.getItem("email"));
+    console.log(user_setting)
 
 
     /* Listeners */
@@ -29,20 +30,6 @@ $(document).ready(async function () {
                 updateSetting(this);
             });
         });
-
-    // Just to make nav bar faster/more responsive before we migrating it to React.js
-    document.querySelectorAll(".nav-item").forEach(item => {
-        item.addEventListener('click', a => {
-            // remove active style on all nav items
-            document.querySelectorAll(".nav-item").forEach(other => {
-                other.firstChild.classList.remove("active");
-            });
-
-            // add active style on clicked item
-            a.target.firstChild.classList.add("active");
-            a.target.classList.add("active")
-        });
-    });
 
 
 });
@@ -119,20 +106,22 @@ function makeNewRequest() {
     });
 
     if (validSave) {
-        let title = document.querySelector("[name=title]").value;
+        // let title = document.querySelector("[name=title]").value;
         let location = document.querySelector("[name=location]").value;
-        let datetime = document.querySelector("[type=datetime-local]").value;
+        // let datetime = document.querySelector("[type=datetime-local]").value;
         let requestType = document.querySelector("#request-type").value;
-        let message = document.querySelector("[name=message]").value;
+        // let message = document.querySelector("[name=message]").value;
 
         let returnObj = {
             "email": localStorage.getItem("email"),
             "request_type": requestType,
-            "title": title,
-            "location": location,
-            "datetime": datetime,
-            "message": message
+            // "title": title,
+            "location": location
+            // "datetime": datetime,
+            // "message": message
         };
+
+        console.log(returnObj)
 
         // Hide make request modal.
         $('#modal-2').modal('hide');
@@ -149,7 +138,7 @@ function makeNewRequest() {
             success: async data => {
                 // Change greeting
                 document.querySelector("#greetingMessage").innerText = ", You got a matching result!";
-                document.querySelector("#greetingDetail").innerText = "These beautiful human beings might be able to help you!";
+                document.querySelector("#greetingDetail").innerText = "These people beings might be able to help you!";
 
                 // List of matching profiles up to top 10 results.
                 const e = document.createElement('div');
@@ -220,29 +209,6 @@ function get_user_profile(email) {
         });
     })
 }
-
-// Retrieve User Setting
-function get_user_setting(email) {
-    return new Promise((resolve, reject) => {
-        $.get(`/users/settings/${email}`, function (
-            data,
-            status
-        ) {
-            console.log(`Retrieve user setting: ${status}`);
-            console.log(data);
-
-            // User setting should not be an empty object
-            if (Object.keys(data).length === 0 && data.constructor === Object) {
-                console.error("user setting is not initialized");
-                resolve(data);
-            }
-
-            resolve(JSON.parse(data));
-
-        });
-    })
-}
-
 
 /******************
  * Below are swipe related
@@ -586,7 +552,7 @@ window.onresize = function () {
 
 var registerInteraction = function () {
     'use strict';
-    window.sampleCompleted('home.html-SwipeFrontTouch');
+    window.sampleCompleted('index.html-SwipeFrontTouch');
 };
 
 var swipeFronts = document.querySelectorAll('.matching-front');
