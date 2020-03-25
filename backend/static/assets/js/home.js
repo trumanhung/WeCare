@@ -1,36 +1,9 @@
 $(document).ready(async function () {
-    // Print localStorage data
-    console.log("Local storage data:\n================================================");
-    const dataKeys = Object.keys(localStorage);
-    for (i in dataKeys) {
-        console.log(`${dataKeys[i]}: ${localStorage.getItem(dataKeys[i])}`);
-    }
-    console.log("================================================");
-
     /* Change DOM content */
     // First name
     document.querySelectorAll('#profile-first-name').forEach(first_name => {
         first_name.innerText = localStorage.getItem("first_name");
     });
-
-
-    let user_setting = await get_user_setting(localStorage.getItem("email"));
-    console.log(user_setting)
-
-
-    /* Listeners */
-    // TODO: waiting for change in backend
-    var settingItem = $("select.custom-select.custom-select-sm.d-table.float-right")
-        .map(function () {
-            // Preload the setting
-            preloadSetting.call(this, user_setting);
-
-            // Update any setting once there is a change.
-            $(this).change(function () {
-                updateSetting(this);
-            });
-        });
-
 
 });
 
@@ -41,51 +14,8 @@ function declineRequest(button) {
 }
 
 function chat(button) {
-    // button.offsetParent.remove();
+    button.offsetParent.remove();
     console.log('TODO: chat with profile user');
-}
-
-function updateSetting(selectObj) {
-    const key = selectObj.name;
-    const returnObj = {};
-    returnObj["email"] = localStorage.getItem("email");
-
-    // Currently we only allow update a pair of key
-    returnObj[key] = $(selectObj).val();
-
-    console.log(`Updating ${key} to ${returnObj[key]}`);
-
-    console.log(returnObj);
-
-    return $.ajax({
-        type: 'POST',
-        url: '/users/settings',
-
-        // The key needs to match your method's input parameter (case-sensitive).
-        data: JSON.stringify(returnObj),
-        contentType: 'application/json; charset=utf-8',
-        dataType: 'json',
-        success: data => {
-            console.log(`Update setting: ${data.update_a_user_settings_success}`);
-        },
-        failure: function (errMsg) {
-            console.log(`Update setting failed: ${errMsg}`);
-        },
-    });
-}
-
-function preloadSetting(user_setting) {
-    // Preload not necessary if user has never changed setting before.
-    if (user_setting[this.name] === undefined) {
-        console.error(`${this.name} is not in ${user_setting}`);
-        return
-    }
-
-    for (let i = 0; i < this.options.length; i++) {
-        if (user_setting[this.name].includes(this.options[i].value)) {
-            this.options[i].selected = true;
-        }
-    }
 }
 
 
@@ -121,7 +51,7 @@ function makeNewRequest() {
             // "message": message
         };
 
-        console.log(returnObj)
+        console.log(returnObj);
 
         // Hide make request modal.
         $('#modal-2').modal('hide');
@@ -248,7 +178,7 @@ window.PointerEventsSupport = !!(window.PointerEvent || window.navigator.msPoint
 function SwipeRevealItem(element) {
     'use strict';
 
-    // Gloabl state variables
+    // Global state variables
     var STATE_DEFAULT = 1;
     var STATE_LEFT_SIDE = 2;
     var STATE_RIGHT_SIDE = 3;
@@ -261,7 +191,7 @@ function SwipeRevealItem(element) {
     var currentState = STATE_DEFAULT;
     var handleSize = -50; // negative val make it disappear on the screen
 
-    // Perform client width here as this can be expensive and doens't
+    // Perform client width here as this can be expensive and doesn't
     // change until window.onresize
     var itemWidth = swipeFrontElement.clientWidth;
     var slopValue = itemWidth * (3 / 10);
