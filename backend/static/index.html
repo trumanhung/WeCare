@@ -26,8 +26,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-icons/3.0.1/iconfont/material-icons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css">
     <link rel="stylesheet" href="assets/fonts/fontawesome5-overrides.min.css?h=18313f04cea0e078412a028c5361bd4e">
-    <link rel="stylesheet" href="assets/css/Add-Another-Button.css?h=9647a49a952066fb13ea82893e7eecaf">
-    <link rel="stylesheet" href="assets/css/Bootstrap-Chat.css?h=ce7841d736074ed6e2884f782cadb01c">
+    <link rel="stylesheet" href="assets/css/Add-Another-Button.css?h=bebfdfd063f12a9d5c58965ac8b7c0b3">
+    <link rel="stylesheet" href="assets/css/Bootstrap-Chat.css?h=8ea4977fc3a1b3a98da7520be4faef68">
     <link rel="stylesheet" href="assets/css/Contact-Form-Clean.css?h=d30710134d10c30d8dc3a38063b9c280">
     <link rel="stylesheet" href="assets/css/custom.css?h=ac2b161ac18a8853f0748d7a4072e327">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
@@ -43,49 +43,13 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script><script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 
 <script src="/assets/js/home.js"></script>
+<script src="assets/js/notification.js"></script>
+
+<!-- Socket.io -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js" integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I=" crossorigin="anonymous"></script>
 </head>
 
 <body class="disabled-select">
-    <div class="modal fade" role="dialog" tabindex="-1" id="setting-modal">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Setting</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
-                <div class="modal-body">
-                    <div>
-                        <fieldset>
-                            <legend class="text-left">Location</legend>
-                            <div class="form-check"><input class="form-check-input" type="checkbox" id="location_enabled" data-toggle="toggle" data-on="On (Recommand)" data-off="Off" data-style="ios" data-height="38" data-onstyle="success"><label class="form-check-label" for="gps-location">GPS/Location Sharing<br></label></div>
-                        </fieldset>
-                        <fieldset id="avai-datetime">
-                            <legend>Avaiabile Date and Time</legend>
-                            <h5>Days</h5>
-                            <div class="form-group d-inline-flex d-sm-flex flex-grow-1 justify-content-between" id="avai-days">
-                                <div class="flex-grow-1 flex-fill" id="days" style="width: 100%;"><input type="checkbox" id="monday" data-toggle="toggle" data-size="small" data-on="Mon" data-off="Mon" data-onstyle="success"><input type="checkbox" id="tuesday" data-toggle="toggle" data-size="small" data-on="Tue" data-off="Tue"
-                                        data-onstyle="success"><input type="checkbox" id="wednesday" data-toggle="toggle" data-size="small" data-on="Wed" data-off="Wed" data-onstyle="success"><input type="checkbox" id="thursday" data-toggle="toggle" data-size="small"
-                                        data-on="Thu" data-off="Thu" data-onstyle="success"><input type="checkbox" id="friday" data-toggle="toggle" data-size="small" data-on="Fri" data-off="Fri" data-onstyle="success"><input type="checkbox" id="saturday"
-                                        data-toggle="toggle" data-size="small" data-on="Sat" data-off="Sat" data-onstyle="success"><input type="checkbox" id="sunday" data-toggle="toggle" data-size="small" data-on="Sun" data-off="Sun" data-onstyle="success"></div>
-                            </div>
-                            <h5>Time</h5>
-                            <div class="form-group d-inline-flex d-sm-flex flex-grow-1 justify-content-between" id="avai-time">
-                                <div class="flex-grow-1 flex-fill" id="times" style="width: 100%;"><input type="checkbox" id="morning" data-toggle="toggle" data-size="small" data-on="Morning" data-off="Morning" data-width="80" data-onstyle="success"><input type="checkbox" id="afternoon" data-toggle="toggle" data-size="small"
-                                        data-on="Afternoon" data-off="Afternoon" data-width="80" data-onstyle="success"><input type="checkbox" id="evening" data-toggle="toggle" data-size="small" data-on="Evening" data-off="Evening" data-width="80" data-onstyle="success"></div>
-                            </div>
-                        </fieldset>
-                        <fieldset id="avai-category">
-                            <legend>Available Category</legend>
-                            <div class="form-check"><input class="form-check-input" type="checkbox" id="OQE" data-toggle="toggle" data-on="Ready" data-off="Not Ready" data-style="ios" data-onstyle="success" data-width="100" data-height="38"><label class="form-check-label" for="OQE">Quick* Errand/Task<br></label></div>
-                            <div
-                                class="form-check"><input class="form-check-input" type="checkbox" id="OPC" data-toggle="toggle" data-on="Ready" data-off="Not Ready" data-style="ios" data-onstyle="success" data-width="100" data-height="38"><label class="form-check-label" for="OPC">Phone Call/Chat<br></label></div>
-                    <div
-                        class="form-check"><input class="form-check-input" type="checkbox" id="OQC" data-toggle="toggle" data-on="Ready" data-off="Not Ready" data-style="ios" data-onstyle="success" data-width="100" data-height="38"><label class="form-check-label" for="OQC">Quick* Connect<br></label></div>
-                </fieldset>
-            </div>
-        </div>
-        <div class="modal-footer"><button class="btn btn-light" type="button" data-dismiss="modal">Close</button></div>
-    </div>
-    </div>
-    </div>
     <div class="modal fade" role="dialog" tabindex="-1" id="make-request-modal">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -96,11 +60,13 @@
                         <div class="form-group d-inline-flex d-sm-flex flex-grow-1 justify-content-between align-items-sm-end"><label class="d-sm-flex justify-content-sm-start"><i class="material-icons">place</i></label><input class="form-control" type="text" name="location" placeholder="Location" inputmode="verbatim"></div>
                         <hr>
                         <div class="form-group d-flex flex-grow-1 justify-content-between align-items-sm-end"><label class="d-sm-flex justify-content-sm-start"><i class="material-icons">format_list_bulleted</i></label><select class="custom-select form-control" id="request-type" required=""><option value="0" selected="">Select an request type</option><option value="REN">Education Navigation</option><option value="RES">Education Support</option><option value="RENA">Employment Navigation</option><option value="RESA">Employment Support</option><option value="RHN">Healthcare Navigation</option><option value="RHS">Healthcare Support</option><option value="RLN">Local  Navigation</option><option value="RLS">Local support</option><option value="RWL">Wellbeing/Leisure</option><option value="RPUD">Pickup And Delivery</option><option value="RHMS">Homemaking Support</option></select></div>
-                    </form>
-                </div>
-                <div class="modal-footer"><button class="btn btn-light" type="button" data-dismiss="modal">Close</button><button class="btn btn-primary" type="button" onclick="makeNewRequest()">Save</button></div>
+                        <div
+                            class="form-group d-flex flex-grow-1 justify-content-between align-items-sm-start"><label class="d-sm-flex justify-content-sm-start"><i class="material-icons">format_align_left</i></label><textarea class="form-control" name="message" placeholder="Add details" required="" rows="14" style="height: 38px;"></textarea></div>
+                </form>
             </div>
+            <div class="modal-footer"><button class="btn btn-light" type="button" data-dismiss="modal">Close</button><button class="btn btn-primary" type="button" onclick="makeNewRequest()">Save</button></div>
         </div>
+    </div>
     </div>
     <div class="modal fade" role="dialog" tabindex="-1" id="help-modal">
         <div class="modal-dialog" role="document">
@@ -108,19 +74,9 @@
                 <div class="modal-header">
                     <h4 class="modal-title">Need Help?</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
                 <div class="modal-body">
-                    <p>Under dev</p>
+                    <p>WeCare - Connecting communities, Supporting each other<br></p>
                 </div>
                 <div class="modal-footer"><button class="btn btn-light" type="button" data-dismiss="modal">Close</button></div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" role="dialog" tabindex="-1" id="accept-request-modal">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Request pending</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
-                <div class="modal-body"><p><span id="requester-email">{email}</span> is asking you to join the chat!<br /><br />Message: <span id="requester-message">{message}</span></p></div>
-                <div class="modal-footer"><button class="btn btn-primary" type="button" onclick="acceptRequest()">Let's have a chat</button></div>
             </div>
         </div>
     </div>
@@ -137,10 +93,64 @@
         <li class="nav-item"><a class="nav-link active" href="#"><i class="material-icons">home</i><br>Home</a></li>
         <li class="nav-item"><a class="nav-link" href="profile.html"><i class="material-icons">person</i><br>Profile</a></li>
         </ul>
+        <div class="modal fade" role="dialog" tabindex="-1" id="notification">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Request pending</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+                    <div class="modal-body">
+                        <p id="notification_field"></p>
+                    </div>
+                    <div class="modal-footer"><button class="btn btn-primary" type="button" onclick="goChat()">Let's have a chat!</button><button class="btn btn-secondary" type="button" onclick="cancelChat()">Ignore</button></div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" role="dialog" tabindex="-1" id="setting-modal">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Setting</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+                    <div class="modal-body">
+                        <div>
+                            <fieldset>
+                                <legend class="text-left">Location</legend>
+                                <div class="form-check"><input class="form-check-input" type="checkbox" id="location_enabled" data-toggle="toggle" data-on="On (Recommand)" data-off="Off" data-style="ios" data-height="38" data-onstyle="success"><label class="form-check-label"
+                                        for="location_enabled">GPS/Location Sharing<br></label></div>
+                            </fieldset>
+                            <fieldset id="avai-datetime">
+                                <legend>Avaiabile Date and Time</legend>
+                                <h5>Days</h5>
+                                <div class="form-group d-inline-flex d-sm-flex flex-grow-1 justify-content-between" id="avai-days">
+                                    <div class="flex-grow-1 flex-fill" id="days" style="width: 100%;"><input type="checkbox" id="monday" data-toggle="toggle" data-size="small" data-on="Mon" data-off="Mon" data-onstyle="success"><input type="checkbox" id="tuesday" data-toggle="toggle" data-size="small" data-on="Tue"
+                                            data-off="Tue" data-onstyle="success"><input type="checkbox" id="wednesday" data-toggle="toggle" data-size="small" data-on="Wed" data-off="Wed" data-onstyle="success"><input type="checkbox" id="thursday" data-toggle="toggle"
+                                            data-size="small" data-on="Thu" data-off="Thu" data-onstyle="success"><input type="checkbox" id="friday" data-toggle="toggle" data-size="small" data-on="Fri" data-off="Fri" data-onstyle="success"><input type="checkbox"
+                                            id="saturday" data-toggle="toggle" data-size="small" data-on="Sat" data-off="Sat" data-onstyle="success"><input type="checkbox" id="sunday" data-toggle="toggle" data-size="small" data-on="Sun" data-off="Sun" data-onstyle="success"></div>
+                                </div>
+                                <h5>Time</h5>
+                                <div class="form-group d-inline-flex d-sm-flex flex-grow-1 justify-content-between" id="avai-time">
+                                    <div class="flex-grow-1 flex-fill" id="times" style="width: 100%;"><input type="checkbox" id="morning" data-toggle="toggle" data-size="small" data-on="Morning" data-off="Morning" data-width="80" data-onstyle="success"><input type="checkbox" id="afternoon" data-toggle="toggle" data-size="small"
+                                            data-on="Afternoon" data-off="Afternoon" data-width="80" data-onstyle="success"><input type="checkbox" id="evening" data-toggle="toggle" data-size="small" data-on="Evening" data-off="Evening" data-width="80" data-onstyle="success"></div>
+                                </div>
+                            </fieldset>
+                            <fieldset id="avai-category">
+                                <legend>Available Category</legend>
+                                <div class="form-check"><input class="form-check-input" type="checkbox" id="OQE" data-toggle="toggle" data-on="Ready" data-off="Not Ready" data-style="ios" data-onstyle="success" data-width="100" data-height="38"><label class="form-check-label"
+                                        for="OQE">Quick* Errand/Task<br></label></div>
+                                <div class="form-check"><input class="form-check-input" type="checkbox" id="OPC" data-toggle="toggle" data-on="Ready" data-off="Not Ready" data-style="ios" data-onstyle="success" data-width="100" data-height="38"><label class="form-check-label"
+                                        for="OPC">Phone Call/Chat<br></label></div>
+                                <div class="form-check"><input class="form-check-input" type="checkbox" id="OQC" data-toggle="toggle" data-on="Ready" data-off="Not Ready" data-style="ios" data-onstyle="success" data-width="100" data-height="38"><label class="form-check-label"
+                                        for="OQC">Quick* Connect<br></label></div>
+                            </fieldset>
+                        </div>
+                    </div>
+                    <div class="modal-footer"><button class="btn btn-light" type="button" data-dismiss="modal">Close</button></div>
+                </div>
+            </div>
+        </div>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
         <script src="assets/js/bs-init.js?h=98fdbbd86223499341d76166d015c405"></script>
-        <script src="assets/js/main.js?h=cfedbfeb1018659139bff78a52d13d61"></script>
+        <script src="assets/js/main.js?h=40d0d0f854ae33127177d6ebeba0edee"></script>
 </body>
 
 </html>
